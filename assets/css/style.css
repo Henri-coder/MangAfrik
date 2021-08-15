@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-to-top i:hover {
-  background: #e1444d;
+  background: #bd7d1a;
   color: #fff;
 }
 
@@ -222,7 +222,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .get-started-btn:hover {
-  background: #e1444d;
+  background: #bd7d1a;
   color: #fff;
 }
 
@@ -1985,14 +1985,14 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #4a5562;
+  background: #17202a ;
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
 }
 
 #footer .footer-top {
-  background: #515d6a;
+  background: #212f3d;
   padding: 60px 0 30px 0;
 }
 
@@ -2106,14 +2106,14 @@ section {
   background: none;
   font-size: 16px;
   padding: 0 20px 2px 20px;
-  background: #81571f;
+  background:  #81571f;
   color: #fff;
   transition: 0.3s;
   border-radius: 0 4px 4px 0;
 }
 
 #footer .footer-top .footer-newsletter form input[type="submit"]:hover {
-  background: #df3740;
+  background: #17202a ;
 }
 
 #footer .copyright {
