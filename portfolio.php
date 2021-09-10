@@ -1,3 +1,19 @@
+<?php
+  include("connection.php");
+          $index=$connection->prepare("SELECT COUNT(id) FROM event");
+        $index->execute();
+        $tab2=$index->fetchAll();
+        
+        $index2=$connection->prepare("SELECT id FROM `event` WHERE 1");
+        $index2->execute();
+        $tab3=$index2->fetchAll();
+        
+
+
+        $counter = $tab2[0][0];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +21,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MangAfrik - Produits</title>
+  <title>MangAfrik - Evenements</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -70,167 +86,68 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Produits</h2>
+          <h2>Evenements</h2>
           <ol>
             <li><a href="index.php">Accueil</a></li>
-            <li>Produits</li>
+            <li>Evenements</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="box">
-              <h3>Free</h3>
-              <h4><sup>$</sup>0<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li class="na">Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured">
-              <h3>Business</h3>
-              <h4><sup>$</sup>19<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box">
-              <h3>Developer</h3>
-              <h4><sup>$</sup>29<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li>Massa ultricies mi</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box">
-              <span class="advanced">Advanced</span>
-              <h3>Ultimate</h3>
-              <h4><sup>$</sup>49<span> / month</span></h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li>Massa ultricies mi</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Pricing Section -->
-
-    <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq">
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
       <div class="container">
 
         <div class="section-title">
-          <h2>F.A.Q</h2>
-          <p>Frequently Asked Questions</p>
+          <h2>Activités</h2>
+          <p>Découvrez nos activités</p>
         </div>
 
-        <div class="row faq-item d-flex align-items-stretch">
-          <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Non consectetur a erat nam at lectus urna duis?</h4>
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Tout</li>
+              <li data-filter=".Mark">MAMARK</li>
+              <li data-filter=".part">PARTENAIRES</li>
+              <li data-filter=".clit">Clients</li>
+            </ul>
           </div>
-          <div class="col-lg-7">
-            <p>
-              Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-            </p>
-          </div>
-        </div><!-- End F.A.Q Item-->
+        </div>
 
-        <div class="row faq-item d-flex align-items-stretch">
-          <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-            </p>
-          </div>
-        </div><!-- End F.A.Q Item-->
+        <div class="row portfolio-container">
 
-        <div class="row faq-item d-flex align-items-stretch">
-          <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?</h4>
+         <!--  <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap"> -->
+              <?php for ($i=0; $i <= $counter-1; $i++) { 
+                  // code...
+                  $req=$connection->prepare("SELECT * from event where id=? limit 1");
+                  $req->setFetchMode(PDO::FETCH_ASSOC);
+                  $req->execute(array($tab3[$i][0]));
+                  $tab=$req->fetchAll();
+                ?>
+                    <div class="col-lg-4 col-md-6 portfolio-item <?php echo $tab[0]['categorie']?>">
+                    <div class="portfolio-wrap">
+                    <img src="export-event.php?id=<?php echo $tab3[$i][0] ?>" class="img-fluid" alt=""/>
+                    <div class="portfolio-info">
+                      <h4><?php echo $tab[0]["titre"]?></h4>
+                      <p><?php echo $tab[0]["description"]?></p>
+                    <div class="portfolio-links">
+                  <a href="export-event.php?id=<?php echo $tab3[$i][0] ?>" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-search-alt"></i></a>
+                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-7">
-            <p>
-              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.
-            </p>
-          </div>
-        </div><!-- End F.A.Q Item-->
+                  <?php
+                  }
+              ?>
 
-        <div class="row faq-item d-flex align-items-stretch">
-          <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              Aperiam itaque sit optio et deleniti eos nihil quidem cumque. Voluptas dolorum accusantium sunt sit enim. Provident consequuntur quam aut reiciendis qui rerum dolorem sit odio. Repellat assumenda soluta sunt pariatur error doloribus fuga.
-            </p>
-          </div>
-        </div><!-- End F.A.Q Item-->
-
-        <div class="row faq-item d-flex align-items-stretch">
-          <div class="col-lg-5">
-            <i class="bx bx-help-circle"></i>
-            <h4>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h4>
-          </div>
-          <div class="col-lg-7">
-            <p>
-              Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-            </p>
-          </div>
-        </div><!-- End F.A.Q Item-->
+        </div>
 
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section><!-- End Portfolio Section -->
 
   </main><!-- End #main -->
 

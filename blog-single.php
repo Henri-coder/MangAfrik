@@ -49,7 +49,7 @@
       <nav class="nav-menu d-none d-lg-block">
 
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html">Accueil</a></li>
 
           <li class="drop-down"><a href="#">About</a>
             <ul>
@@ -93,7 +93,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Dolorum optio tempore voluptas dignissimos</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Accueil</a></li>
             <li><a href="blog.html">Blog</a></li>
           </ol>
         </div>
@@ -429,7 +429,7 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Accueil</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>

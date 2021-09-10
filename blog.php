@@ -1,11 +1,28 @@
+<?php
+  include("connection.php");
+          $index=$connection->prepare("SELECT COUNT(id) FROM article");
+        $index->execute();
+        $tab2=$index->fetchAll();
+        
+        $index2=$connection->prepare("SELECT id FROM `article` WHERE 1");
+        $index2->execute();
+        $tab3=$index2->fetchAll();
+        
 
+
+        $counter = $tab2[0][0];
+
+?>
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MangAfrik - A propos</title>
+  <title>MangAfrik - Blog</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,28 +54,28 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo"><a href="index.php"><img src="assets/img/favicon.png">Mang'Afrik Agency</a></h1>
+      <h1 class="logo"><a href="index.html"><img src="assets/img/favicon.png">Mang'Afrik Agency</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
 
         <ul>
-          <li class="active"><a href="index.php">Accueil</a></li>
+          <li><a href="index.html">Accueil</a></li>
 
           <li><a href="about.html">A Propos</a>
           </li>
 
           <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.php">Evenements</a></li>
+          <li><a href="portfolio.html">Evenements</a></li>
           <li><a href="pricing.html">Prouduits</a></li>
-          <li><a href="blog.php">Blog</a></li>
-          <li><a href="contact.html">Contacts</a></li>
+          <li class="active"><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
 
       </nav><!-- .nav-menu -->
 
-      <a href="index.php" class="get-started-btn ml-auto">A Venir</a>
+      <a href="index.html" class="get-started-btn ml-auto">A Venir</a>
 
     </div>
   </header><!-- End Header -->
@@ -70,63 +87,81 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Atouts</h2>
+          <h2>Blog</h2>
           <ol>
-            <li><a href="index.php">Accueil</a></li>
-            <li>Atouts</li>
+            <li><a href="index.html">Accueil</a></li>
+            <li>Blog</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Asset Section ======= -->
-    <section id="about" class="about">
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
       <div class="container">
 
-        <div class="row content contender">
-         
-            <p>
-              Basée sur trois (3) principes professionnels : TRAVAIL – RIGUEUR – ENGAGEMENT, MANG’AFRIK possède des atouts unique en son genre. Nos atouts en communication sont de véritables maillons de la chaine de satisfaction pour votre entreprise et ses attentes. Parmi ceux-ci nous avons :
-            </p>
-            <ul>
+        <div class="row">
 
+          <?php for ($i=0; $i <= $counter-1; $i++) { 
+                  // code...
+                  $req=$connection->prepare("SELECT * from article where id=? limit 1");
+                  $req->setFetchMode(PDO::FETCH_ASSOC);
+                  $req->execute(array($tab3[$i][0]));
+                  $tab=$req->fetchAll();
+                ?>
 
-              <li><i class="ri-check-double-line"></i> 
-                  Un grand esprit de créativité,
-              </li>
-              <li><i class="ri-check-double-line"></i> 
-              Des stratégies de communication taillées pour votre entreprise,
-              </li>
-              <li><i class="ri-check-double-line"></i> Des projets de communication inédits et exclusifs,
-              </li>
-              <li><i class="ri-check-double-line"></i> Des actions de communication maitrisées de bout en bout et dans le détail,
-              </li>
-              <li><i class="ri-check-double-line"></i> Une forte capacité relationnelle et managériale,
-              </li>
-              <li><i class="ri-check-double-line"></i> Une forte capacité d’écoute, de compréhension et de proposition,
-              </li>
-              <li><i class="ri-check-double-line"></i> La capacité de travailler en les deux langues nationales (français et anglais),
-              </li>
-              <li><i class="ri-check-double-line"></i> Plus de cinq (5) ans d’expériences en communication marketing, communication évènementielle et communication digitale,
-              </li>
-              <li><i class="ri-check-double-line"></i> Expertise en stratégie digitale et campagne promotionnelle.
-              </li>
-            </ul>
-            <p class="font-italic">
-              Assurément, vous n’aurez que de la satisfaction en travaillant avec MANG’AFRIK!
-            </p>
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+            <article class="entry">
+
+              <div class="entry-img">
+                <img src="export-img.php?id=<?php echo $tab3[$i][0] ?>" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="blog-single.php"><?php echo $tab[0]["titre"]?></a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.php"><?php echo $tab[0]["nom"]?></a></li>
+                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.php"><time datetime="2020-01-01"><?php echo $tab[0]["date"]?></time></a></li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                  <?php echo $tab[0]["texte"]?>
+                </p>
+                <div class="read-more">
+                  <a href="blog-single.php">En savoir plus</a>
+                </div>
+              </div>
+
+           <!--  End blog entry -->
           </div>
+          <?php
+        }
+        ?>
+
+        </div>
+
+        <div class="blog-pagination" data-aos="fade-up">
+          <ul class="justify-content-center">
+            <li class="disabled"><i class="icofont-rounded-left"></i></li>
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#"><i class="icofont-rounded-right"></i></a></li>
+          </ul>
         </div>
 
       </div>
-    </section><!-- End Asset Section -->
-
-    
+    </section><!-- End Blog Section -->
 
   </main><!-- End #main -->
 
-   <!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -152,7 +187,7 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Liens plus utilisés</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Accueil</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Accueil</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="about.html">A Propos</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="services.html">Services</a></li>
              

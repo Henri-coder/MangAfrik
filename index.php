@@ -1,3 +1,19 @@
+<?php
+  include("connection.php");
+          $index=$connection->prepare("SELECT COUNT(id) FROM event");
+        $index->execute();
+        $tab2=$index->fetchAll();
+        
+        $index2=$connection->prepare("SELECT id FROM `event` WHERE 1");
+        $index2->execute();
+        $tab3=$index2->fetchAll();
+        
+
+
+        $counter = $tab2[0][0];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,28 +53,28 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo"><a href="index.html"><img src="assets/img/favicon.png">Mang'Afrik Agency</a></h1>
+      <h1 class="logo"><a href="index.php"><img src="assets/img/favicon.png">Mang'Afrik Agency</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
 
         <ul>
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="index.php">Acceuil</a></li>
 
           <li><a href="about.html">A Propos</a>
           </li>
 
           <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Evenements</a></li>
+          <li><a href="portfolio.php">Evenements</a></li>
           <li><a href="pricing.html">Prouduits</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.php">Blog</a></li>
+          <li><a href="contact.html">Contacts</a></li>
         </ul>
 
       </nav><!-- .nav-menu -->
 
-      <a href="index.html" class="get-started-btn ml-auto">A Venir</a>
+      <a href="index.php" class="get-started-btn ml-auto">A Venir</a>
 
     </div>
   </header><!-- End Header -->
@@ -236,11 +252,12 @@ nous gérons vos médias sociaux en vous apportant en plus du Conseil et de l’
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i><img src="assets/img/2-gestion-campagne.png"></i>
-              <h4><a href="#">Gestion de campagne</a></h4>
-              <p>Nous planifions et gérons vos sorties médiatiques, vos campagne de sensibilisation et nous créons des 
-concepts STREET MARKETING pour vos produits et services.</p>
+           <div class="icon-box">
+              <i><img src="assets/img/6-Event-Marketing.png"></i>
+              <h4><a href="#">Event Marketing</a></h4>
+              <p>Nous mettons en place la communication pré évènement, pendant l’évènement et post évènement, 
+nous établissons et gérons la logistique adéquate adaptée et nous élaborons un budget sculpté pour 
+selon votre besoin.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
@@ -261,17 +278,16 @@ vous la durée de votre campagne en fonction des objectifs à atteindre à l’i
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i><img src="assets/img/5-Distribution.png"></i>
-              <h4><a href="#">Event Marketing</a></h4>
-              <p>Nous mettons en place la communication pré évènement, pendant l’évènement et post évènement, 
-nous établissons et gérons la logistique adéquate adaptée et nous élaborons un budget sculpté pour 
-selon votre besoin.</p>
+             <div class="icon-box">
+              <i><img src="assets/img/2-gestion-campagne.png"></i>
+              <h4><a href="#">Gestion de campagne</a></h4>
+              <p>Nous planifions et gérons vos sorties médiatiques, vos campagne de sensibilisation et nous créons des 
+concepts STREET MARKETING pour vos produits et services.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
-              <i><img src="assets/img/6-Event-Marketing.png"></i>
+              <i><img src="assets/img/5-Distribution.png"></i>
               <h4><a href="#">Distribution</a></h4>
               <p>Nous distribuons les produits locaux, consommables et non consommables, à l’échelle nationale et 
 internationale par le biais du Carrefour des Affaires Panafricaines et la Chambre de Commerce Québec-Afrique.</p>
@@ -295,140 +311,41 @@ internationale par le biais du Carrefour des Affaires Panafricaines et la Chambr
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">Tout</li>
-              <li data-filter=".filter-app">MAMARK</li>
-              <li data-filter=".filter-card">PARTENAIRES</li>
-              <li data-filter=".filter-web">Clients</li>
+              <li data-filter=".Mark">MAMARK</li>
+              <li data-filter=".part">PARTENAIRES</li>
+              <li data-filter=".clit">Clients</li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+         <!--  <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap"> -->
+              <?php for ($i=0; $i <= $counter-1; $i++) { 
+                  // code...
+                  $req=$connection->prepare("SELECT * from event where id=? limit 1");
+                  $req->setFetchMode(PDO::FETCH_ASSOC);
+                  $req->execute(array($tab3[$i][0]));
+                  $tab=$req->fetchAll();
+                ?>
+                    <div class="col-lg-4 col-md-6 portfolio-item <?php echo $tab[0]['categorie']?>">
+                    <div class="portfolio-wrap">
+                    <img src="export-event.php?id=<?php echo $tab3[$i][0] ?>" class="img-fluid" alt=""/>
+                    <div class="portfolio-info">
+                      <h4><?php echo $tab[0]["titre"]?></h4>
+                      <p><?php echo $tab[0]["description"]?></p>
+                    <div class="portfolio-links">
+                  <a href="export-event.php?id=<?php echo $tab3[$i][0] ?>" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-search-alt"></i></a>
                  <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 2</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 2</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox" title="Web 2"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox" title="App 3"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 1</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 3</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox" title="Card 3"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                 <!--  <a href="portfolio-details.html" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
+                  <?php
+                  }
+              ?>
+              
 
         </div>
 
@@ -463,7 +380,7 @@ internationale par le biais du Carrefour des Affaires Panafricaines et la Chambr
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Acceuil</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="about.html">A Propos</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="services.html">Services</a></li>
              
