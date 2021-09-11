@@ -24,8 +24,8 @@
 <body>
 	<form name="form-article" method="post" action="" enctype="multipart/form-data">
 		<input type="file" name="image"/><br>
-		<input type="texte" name="titre"/><br>
-		<input type="texte" name="nom"/><br>
+		<input type="texte" name="titre" placeholder="titre" /><br>
+		<input type="texte" name="nom" placeholder="nom" /><br>
 		<textarea name="texte" placeholder="ecrivez quelque chose"></textarea><br>
 		<input type="submit" name="valider" value="valider"/>
 	</form>
